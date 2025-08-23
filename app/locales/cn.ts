@@ -1,6 +1,5 @@
 import { getClientConfig } from "../config/client";
 import { SubmitKey } from "../store/config";
-import { SAAS_CHAT_UTM_URL } from "@/app/constant";
 
 const isApp = !!getClientConfig()?.isApp;
 
@@ -8,14 +7,14 @@ const cn = {
   WIP: "该功能仍在开发中……",
   Error: {
     Unauthorized: isApp
-      ? `😆 对话遇到了一些问题，不用慌:
-       \\ 1️⃣ 想要零配置开箱即用，[点击这里立刻开启对话 🚀](${SAAS_CHAT_UTM_URL})
-       \\ 2️⃣ 如果你想消耗自己的 OpenAI 资源，点击[这里](/#/settings)修改设置 ⚙️`
-      : `😆 对话遇到了一些问题，不用慌:
-       \ 1️⃣ 想要零配置开箱即用，[点击这里立刻开启对话 🚀](${SAAS_CHAT_UTM_URL})
-       \ 2️⃣ 如果你正在使用私有部署版本，点击[这里](/#/auth)输入访问秘钥 🔑
-       \ 3️⃣ 如果你想消耗自己的 OpenAI 资源，点击[这里](/#/settings)修改设置 ⚙️
-       `,
+      ? `您好，我是KINA，有什么能帮您的？`
+      : // \\ 1️⃣ 想要零配置开箱即用，[点击这里立刻开启对话 🚀](${SAAS_CHAT_UTM_URL})
+        // \\ 2️⃣ 如果你想消耗自己的 OpenAI 资源，点击[这里](/#/settings)修改设置 ⚙️`
+        `您好，我是KINA，有什么能帮您的？`,
+    // \ 1️⃣ 想要零配置开箱即用，[点击这里立刻开启对话 🚀](${SAAS_CHAT_UTM_URL})
+    // \ 2️⃣ 如果你正在使用私有部署版本，点击[这里](/#/auth)输入访问秘钥 🔑
+    // \ 3️⃣ 如果你想消耗自己的 OpenAI 资源，点击[这里](/#/settings)修改设置 ⚙️
+    // `,
   },
   Auth: {
     Return: "返回",
@@ -26,8 +25,8 @@ const cn = {
     Confirm: "确认",
     Later: "稍后再说",
     SaasTips: "配置太麻烦，想要立即使用",
-    TopTips:
-      "🥳 NextChat AI 首发优惠，立刻解锁 OpenAI o1, GPT-4o, Claude-3.5 等最新大模型",
+    TopTips: "www.hyperplasma.top",
+    // "🥳 NextChat AI 首发优惠，立刻解锁 OpenAI o1, GPT-4o, Claude-3.5 等最新大模型",
   },
   ChatItem: {
     ChatItemCount: (count: number) => `${count} 条对话`,
@@ -79,7 +78,7 @@ const cn = {
       Prompt: "快捷指令",
       Masks: "所有面具",
       Clear: "清除聊天",
-      Settings: "对话设置",
+      Settings: "当前对话设置",
       UploadImage: "上传图片",
     },
     Rename: "重命名对话",
@@ -153,6 +152,9 @@ const cn = {
   },
   Home: {
     NewChat: "新的聊天",
+    Nav: "Hyplus导航",
+    GitHub: "GitHub",
+    Desc: "说明",
     DeleteChat: "确认删除选中的对话？",
     DeleteToast: "已删除会话",
     Revert: "撤销",
@@ -192,7 +194,7 @@ const cn = {
     },
     InjectSystemPrompts: {
       Title: "注入系统级提示信息",
-      SubTitle: "强制给每次请求的消息列表开头添加一个模拟 ChatGPT 的系统提示",
+      SubTitle: "强制给每次请求的消息列表开头添加用于强化性能的全局系统提示",
     },
     InputTemplate: {
       Title: "用户输入预处理",
@@ -325,7 +327,8 @@ const cn = {
       },
       CustomEndpoint: {
         Title: "自定义接口",
-        SubTitle: "是否使用自定义 Azure 或 OpenAI 服务",
+        SubTitle:
+          "覆盖KINA默认模型，使用自定义服务（后续模型设置应选择对应的模型）",
       },
       Provider: {
         Title: "模型服务商",
@@ -558,7 +561,7 @@ const cn = {
     },
     Temperature: {
       Title: "随机性 (temperature)",
-      SubTitle: "值越大，回复越随机",
+      SubTitle: "值越大，回复越随机，越有想象力",
     },
     TopP: {
       Title: "核采样 (top_p)",
@@ -579,7 +582,7 @@ const cn = {
     TTS: {
       Enable: {
         Title: "启用文本转语音",
-        SubTitle: "启用文本生成语音服务",
+        SubTitle: "启用文本生成语音服务（推荐选用Edge-TTS）",
       },
       Autoplay: {
         Title: "启用自动朗读",
@@ -599,7 +602,7 @@ const cn = {
     Realtime: {
       Enable: {
         Title: "实时聊天",
-        SubTitle: "开启实时聊天功能",
+        SubTitle: "开启实时聊天功能（需自备API Key）",
       },
       Provider: {
         Title: "模型服务商",
@@ -632,7 +635,16 @@ const cn = {
   },
   Store: {
     DefaultTopic: "新的聊天",
-    BotHello: "有什么可以帮你的吗",
+    BotHello: `您好，我是KINA，有什么能帮您的？
+    
+    模型选择建议：
+     🚀 gpt-4o-mini：综合推理、多模态
+     🚀 gpt-5、grok3等新型AI：最强性能
+     🚀 glm-4-flash等：极速稳定响应 (网络波动时使用)
+     🚀 其他：待追加
+    使用预设角色面具、开启新对话时请手动检查模型选择。
+    点击右上角分享当前聊天记录，可导出文本或PNG图片！
+    `, // HY-Important
     Error: "出错了，稍后重试吧",
     Prompt: {
       History: (content: string) => "这是历史聊天总结作为前情提要：" + content,
@@ -653,7 +665,7 @@ const cn = {
   Context: {
     Toast: (x: any) => `包含 ${x} 条预设提示词`,
     Edit: "当前对话设置",
-    Add: "新增一条对话",
+    Add: "新增一条指令（可自定义角色）",
     Clear: "上下文已清除",
     Revert: "恢复上下文",
   },
@@ -722,7 +734,7 @@ const cn = {
     },
   },
   Mask: {
-    Name: "面具",
+    Name: "设置角色面具",
     Page: {
       Title: "预设角色面具",
       SubTitle: (count: number) => `${count} 个预设角色定义`,
@@ -775,8 +787,8 @@ const cn = {
     Skip: "直接开始",
     NotShow: "不再展示",
     ConfirmNoShow: "确认禁用？禁用后可以随时在设置中重新启用。",
-    Title: "挑选一个面具",
-    SubTitle: "现在开始，与面具背后的灵魂思维碰撞",
+    Title: "设置角色面具",
+    SubTitle: "定制你的专属应用模型（可导入/导出本地配置）",
     More: "查看全部",
   },
 
