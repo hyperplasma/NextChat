@@ -7,9 +7,8 @@ import SettingsIcon from "../icons/settings.svg";
 import GithubIcon from "../icons/github.svg";
 import ChatGptIcon from "../icons/chatgpt.svg";
 import AddIcon from "../icons/add.svg";
+import FireIcon from "../icons/fire.svg";
 import DeleteIcon from "../icons/delete.svg";
-import MaskIcon from "../icons/mask.svg";
-import McpIcon from "../icons/mcp.svg";
 import DragIcon from "../icons/drag.svg";
 import DiscoveryIcon from "../icons/discovery.svg";
 
@@ -19,17 +18,18 @@ import { useAppConfig, useChatStore } from "../store";
 
 import {
   DEFAULT_SIDEBAR_WIDTH,
+  GITEE_URL,
+  HYPLUS_URL,
   MAX_SIDEBAR_WIDTH,
   MIN_SIDEBAR_WIDTH,
   NARROW_SIDEBAR_WIDTH,
   Path,
-  REPO_URL,
 } from "../constant";
 
 import { Link, useNavigate } from "react-router-dom";
 import { isIOS, useMobileScreen } from "../utils";
 import dynamic from "next/dynamic";
-import { Selector, showConfirm } from "./ui-lib";
+import { showConfirm } from "./ui-lib";
 import clsx from "clsx";
 import { isMcpEnabled } from "../mcp/actions";
 
@@ -191,7 +191,7 @@ export function SideBarHeader(props: {
           </div>
           <div className={styles["sidebar-sub-title"]}>{subTitle}</div>
         </div>
-        <div className={clsx(styles["sidebar-logo"], "no-dark")}>{logo}</div>
+        {/*<div className={clsx(styles["sidebar-logo"], "no-dark")}>{logo}</div>*/}
       </div>
       {children}
     </Fragment>
@@ -250,14 +250,24 @@ export function SideBar(props: { className?: string }) {
       {...props}
     >
       <SideBarHeader
-        title="NextChat"
-        subTitle="Build your own AI assistant."
+        title="KINA-Next"
+        subTitle="Enhance your exploration with Power!"
         logo={<ChatGptIcon />}
         shouldNarrow={shouldNarrow}
       >
         <div className={styles["sidebar-header-bar"]}>
           <IconButton
-            icon={<MaskIcon />}
+            icon={<DiscoveryIcon />}
+            text={shouldNarrow ? undefined : Locale.Home.Nav}
+            className={styles["sidebar-bar-button"]}
+            onClick={() => {
+              window.open(HYPLUS_URL, "_blank");
+              // window.location.href = HYPLUS_URL;
+            }}
+            shadow
+          />
+          <IconButton
+            icon={<FireIcon />}
             text={shouldNarrow ? undefined : Locale.Mask.Name}
             className={styles["sidebar-bar-button"]}
             onClick={() => {
@@ -269,41 +279,14 @@ export function SideBar(props: { className?: string }) {
             }}
             shadow
           />
-          {mcpEnabled && (
-            <IconButton
-              icon={<McpIcon />}
-              text={shouldNarrow ? undefined : Locale.Mcp.Name}
-              className={styles["sidebar-bar-button"]}
-              onClick={() => {
-                navigate(Path.McpMarket, { state: { fromHome: true } });
-              }}
-              shadow
-            />
-          )}
-          <IconButton
-            icon={<DiscoveryIcon />}
-            text={shouldNarrow ? undefined : Locale.Discovery.Name}
-            className={styles["sidebar-bar-button"]}
-            onClick={() => setshowDiscoverySelector(true)}
-            shadow
-          />
+          {/*<IconButton*/}
+          {/*  icon={<DiscoveryIcon />}*/}
+          {/*  text={shouldNarrow ? undefined : Locale.Discovery.Name}*/}
+          {/*  className={styles["sidebar-bar-button"]}*/}
+          {/*  onClick={() => setShowPluginSelector(true)}*/}
+          {/*  shadow*/}
+          {/*/>*/}
         </div>
-        {showDiscoverySelector && (
-          <Selector
-            items={[
-              ...DISCOVERY.map((item) => {
-                return {
-                  title: item.name,
-                  value: item.path,
-                };
-              }),
-            ]}
-            onClose={() => setshowDiscoverySelector(false)}
-            onSelection={(s) => {
-              navigate(s[0], { state: { fromHome: true } });
-            }}
-          />
-        )}
       </SideBarHeader>
       <SideBarBody
         onClick={(e) => {
@@ -336,8 +319,28 @@ export function SideBar(props: { className?: string }) {
                 />
               </Link>
             </div>
+            {/*<div className={styles["sidebar-action"]}>*/}
+            {/*  <a*/}
+            {/*    className="my-links"*/}
+            {/*    href={HYPLUS_KINA_URL}*/}
+            {/*    target="_blank"*/}
+            {/*    rel="noopener noreferrer"*/}
+            {/*  >*/}
+            {/*    <IconButton*/}
+            {/*      aria={Locale.Export.MessageFromChatGPT}*/}
+            {/*      icon={<DiscoveryIcon />}*/}
+            {/*      // text={Locale.Home.Desc}*/}
+            {/*      shadow*/}
+            {/*    />*/}
+            {/*  </a>*/}
+            {/*</div>*/}
             <div className={styles["sidebar-action"]}>
-              <a href={REPO_URL} target="_blank" rel="noopener noreferrer">
+              <a
+                className="my-links"
+                href={GITEE_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <IconButton
                   aria={Locale.Export.MessageFromChatGPT}
                   icon={<GithubIcon />}
