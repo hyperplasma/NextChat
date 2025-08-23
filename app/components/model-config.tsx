@@ -23,7 +23,10 @@ export function ModelConfigList(props: {
 
   return (
     <>
-      <ListItem title={Locale.Settings.Model}>
+      <ListItem
+        title={Locale.Settings.Model}
+        subTitle="选择内置默认模型（推荐使用glm-4-flash）或自定义服务"
+      >
         <Select
           aria-label={Locale.Settings.Model}
           value={value}
