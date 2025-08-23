@@ -67,6 +67,7 @@ import {
   DeepSeek,
   SiliconFlow,
   AI302,
+  GITHUB_URL,
 } from "../constant";
 import { Prompt, SearchService, usePromptStore } from "../store/prompt";
 import { ErrorBoundary } from "./error";
@@ -1970,11 +1971,7 @@ export function Settings() {
           </center>
           <center>
             <h5>
-              <a
-                className="my-links"
-                href="https://github.com/hyperplasma"
-                target="_blank"
-              >
+              <a className="my-links" href={GITHUB_URL} target="_blank">
                 GitHub
               </a>
               &nbsp;|&nbsp;
