@@ -155,6 +155,9 @@ const en: LocaleType = {
   },
   Home: {
     NewChat: "New Chat",
+    Nav: "NextChat AI",
+    GitHub: "GitHub",
+    Desc: "The best AI chat",
     DeleteChat: "Confirm to delete the selected conversation?",
     DeleteToast: "Chat Deleted",
     Revert: "Revert",
