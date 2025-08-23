@@ -21,7 +21,6 @@ import SpeakStopIcon from "../icons/speak-stop.svg";
 import LoadingIcon from "../icons/three-dots.svg";
 import LoadingButtonIcon from "../icons/loading.svg";
 import PromptIcon from "../icons/prompt.svg";
-import MaskIcon from "../icons/mask.svg";
 import MaxIcon from "../icons/max.svg";
 import MinIcon from "../icons/min.svg";
 import ResetIcon from "../icons/reload.svg";
@@ -44,7 +43,6 @@ import RobotIcon from "../icons/robot.svg";
 import SizeIcon from "../icons/size.svg";
 import QualityIcon from "../icons/hd.svg";
 import StyleIcon from "../icons/palette.svg";
-import PluginIcon from "../icons/plugin.svg";
 import ShortcutkeyIcon from "../icons/shortcutkey.svg";
 import McpToolIcon from "../icons/tool.svg";
 import HeadphoneIcon from "../icons/headphone.svg";
@@ -74,7 +72,6 @@ import {
   supportsCustomSize,
   useMobileScreen,
   selectOrCopy,
-  showPlugins,
 } from "../utils";
 
 import { uploadImage as uploadImageRemote } from "@/app/utils/chat";
@@ -650,13 +647,13 @@ export function ChatActions(props: {
           icon={<PromptIcon />}
         />
 
-        <ChatAction
-          onClick={() => {
-            navigate(Path.Masks);
-          }}
-          text={Locale.Chat.InputActions.Masks}
-          icon={<MaskIcon />}
-        />
+        {/*<ChatAction*/}
+        {/*  onClick={() => {*/}
+        {/*    navigate(Path.Masks);*/}
+        {/*  }}*/}
+        {/*  text={Locale.Chat.InputActions.Masks}*/}
+        {/*  icon={<MaskIcon />}*/}
+        {/*/>*/}
 
         <ChatAction
           text={Locale.Chat.InputActions.Clear}
@@ -795,35 +792,35 @@ export function ChatActions(props: {
           />
         )}
 
-        {showPlugins(currentProviderName, currentModel) && (
-          <ChatAction
-            onClick={() => {
-              if (pluginStore.getAll().length == 0) {
-                navigate(Path.Plugins);
-              } else {
-                setShowPluginSelector(true);
-              }
-            }}
-            text={Locale.Plugin.Name}
-            icon={<PluginIcon />}
-          />
-        )}
-        {showPluginSelector && (
-          <Selector
-            multiple
-            defaultSelectedValue={chatStore.currentSession().mask?.plugin}
-            items={pluginStore.getAll().map((item) => ({
-              title: `${item?.title}@${item?.version}`,
-              value: item?.id,
-            }))}
-            onClose={() => setShowPluginSelector(false)}
-            onSelection={(s) => {
-              chatStore.updateTargetSession(session, (session) => {
-                session.mask.plugin = s as string[];
-              });
-            }}
-          />
-        )}
+        {/*{showPlugins(currentProviderName, currentModel) && (*/}
+        {/*  <ChatAction*/}
+        {/*    onClick={() => {*/}
+        {/*      if (pluginStore.getAll().length == 0) {*/}
+        {/*        navigate(Path.Plugins);*/}
+        {/*      } else {*/}
+        {/*        setShowPluginSelector(true);*/}
+        {/*      }*/}
+        {/*    }}*/}
+        {/*    text={Locale.Plugin.Name}*/}
+        {/*    icon={<PluginIcon />}*/}
+        {/*  />*/}
+        {/*)}*/}
+        {/*{showPluginSelector && (*/}
+        {/*  <Selector*/}
+        {/*    multiple*/}
+        {/*    defaultSelectedValue={chatStore.currentSession().mask?.plugin}*/}
+        {/*    items={pluginStore.getAll().map((item) => ({*/}
+        {/*      title: `${item?.title}@${item?.version}`,*/}
+        {/*      value: item?.id,*/}
+        {/*    }))}*/}
+        {/*    onClose={() => setShowPluginSelector(false)}*/}
+        {/*    onSelection={(s) => {*/}
+        {/*      chatStore.updateTargetSession(session, (session) => {*/}
+        {/*        session.mask.plugin = s as string[];*/}
+        {/*      });*/}
+        {/*    }}*/}
+        {/*  />*/}
+        {/*)}*/}
 
         {!isMobileScreen && (
           <ChatAction
