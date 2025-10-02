@@ -1520,10 +1520,10 @@ export function Settings() {
         <List>
           <ListItem
             title="KINA-Next by Akira37 (Hyplus)"
-            subTitle="version: 1.3"
+            subTitle="version: 1.3.1"
           ></ListItem>
           <ListItem subTitle="所有对话记忆、图文资源、隐私设置均为本地存储，无泄密风险。会不定期追加更多可用模型。"></ListItem>
-          <ListItem subTitle="推荐使用gpt-4o-mini(OpenAI)，不稳定时可临时换用glm-4-flash，模型响应异常请检查网络与模型，及时反馈。"></ListItem>
+          <ListItem subTitle="推荐使用gpt系列模型，不稳定时可临时换用glm-4-flash。模型响应异常多为上游问题，其他疑难杂症及时反馈。"></ListItem>
         </List>
 
         <List>
