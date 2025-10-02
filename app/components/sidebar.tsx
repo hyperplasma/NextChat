@@ -18,8 +18,7 @@ import { useAppConfig, useChatStore } from "../store";
 
 import {
   DEFAULT_SIDEBAR_WIDTH,
-  GITEE_URL,
-  HYPLUS_URL,
+  GITEE_URL, HYPLUS_NAV_URL,
   MAX_SIDEBAR_WIDTH,
   MIN_SIDEBAR_WIDTH,
   NARROW_SIDEBAR_WIDTH,
@@ -261,7 +260,7 @@ export function SideBar(props: { className?: string }) {
             text={shouldNarrow ? undefined : Locale.Home.Nav}
             className={styles["sidebar-bar-button"]}
             onClick={() => {
-              window.open(HYPLUS_URL, "_blank");
+              window.open(HYPLUS_NAV_URL, "_blank");
               // window.location.href = HYPLUS_URL;
             }}
             shadow

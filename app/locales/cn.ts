@@ -152,7 +152,7 @@ const cn = {
   },
   Home: {
     NewChat: "新的聊天",
-    Nav: "Hyplus导航",
+    Nav: "大模型使用指南",
     GitHub: "GitHub",
     Desc: "说明",
     DeleteChat: "确认删除选中的对话？",
